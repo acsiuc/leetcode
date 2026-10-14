@@ -1,24 +1,29 @@
 
 
-array = [7,7]
-k = 1
+array = [1,2,2,3,3,3]
+k = 2
 
 def topKFrequent(array, k):
-    seen = {}
-    for x in array:
-        if x in seen:
-            seen[x]+=1
-        else:
-            seen[x] = 1
-
-    top_frequent = sorted(seen.items(), key = lambda seen: seen[1], reverse = True)
+    counts = {}
     answer = []
 
-    for x in range(k):
-        answer.append(top_frequent[x][0])
+    for x in array:
+        counts[x] = counts.get(x, 0) + 1
+
+    buckets = [[] for _ in range(max(counts.values()) + 1)]
+
+    for number, count in counts.items():
+        buckets[count].append(number)
+
+    for i in range(len(buckets)-1, 0, -1):
+        for j in buckets[i]:
+            answer.append(j)
+        if len(answer) == k:
+            return answer
+
+    
     
 
-    return answer
 
 
 
