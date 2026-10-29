@@ -20,4 +20,4 @@ def isPalindrome(s):
 
 
 if __name__ == "__main__":
-    print(isPalindrome(s))
+    print(isPalindrome(s)) 
